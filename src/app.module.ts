@@ -8,12 +8,6 @@ import { configValidationSchema } from './config.schema';
 @Module({
   imports: [
     TasksModule,
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   autoLoadEntities: true,
-    //   synchronize: true,
-    //   entities: [__dirname + '/../**/*.entity.js'],
-    // }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
