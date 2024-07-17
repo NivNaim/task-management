@@ -16,14 +16,6 @@ const mockUser = {
   tasks: [],
 };
 
-const mockTask = {
-  id: 'someId',
-  title: 'someTitle',
-  description: 'someDescription',
-  status: TaskStatus.OPEN,
-  user: mockUser,
-};
-
 describe('TasksService', () => {
   let tasksService: TasksService;
   let tasksRepository: ReturnType<typeof mockTasksRepository>;
@@ -50,6 +42,14 @@ describe('TasksService', () => {
 
   describe('getTaskById', () => {
     it('calls TasksRepository.findOne and returns the result', async () => {
+      const mockTask = {
+        id: 'someId',
+        title: 'someTitle',
+        description: 'someDescription',
+        status: TaskStatus.OPEN,
+        user: mockUser,
+      };
+
       tasksRepository.findOne.mockResolvedValue(mockTask);
       const result = await tasksService.getTaskById(mockTask.id, mockUser);
       expect(result).toEqual(mockTask);
